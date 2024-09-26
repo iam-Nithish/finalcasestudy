@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: #fdefee;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh; /* Adjusted height to make space for navbar */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 18px; /* Reduced padding */
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 330px; /* Reduced width */
+            margin-top: 60px; /* Increased space at the top for navbar */
+        }
+
+        .container img {
+            max-width: 100%; /* Removed padding */
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px; /* Added margin to create space below the image */
+        }
+
+        h2 {
+            font-size: 22px; /* Reduced font size */
+            color: #333;
+            margin-bottom: 18px; /* Reduced margin */
+        }
+
+        input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 9px; /* Reduced padding */
+            margin-bottom: 13px; /* Reduced margin */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px; /* Slightly smaller font */
+            height: 42px; /* Reduced height */
+            box-sizing: border-box;
+        }
+
+        select {
+            height: 42px;
+        }
+
+        .terms {
+            font-size: 13px; /* Reduced font size */
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .terms a {
+            color: hotpink;
+            text-decoration: none;
+        }
+
+        input[type="submit"] {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 11px; /* Reduced padding */
+            width: 100%;
+            font-size: 15px; /* Slightly smaller font */
+            color: #333;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 9px; /* Reduced margin */
+        }
+
+        .help-text {
+            font-size: 13px; /* Reduced font size */
+            color: #666;
+        }
+
+        .help-text a {
+            color: hotpink;
+            text-decoration: none;
+        }
+
+        .register {
+            margin-top: 13px; /* Reduced margin */
+            font-size: 13px; /* Reduced font size */
+        }
+
+        .register a {
+            color: hotpink;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Image Section -->
+        <img src="https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2022/3/16/d4edb37c-aee8-4989-86f4-33b117edd4bc1647415464555-Banner_Login-Landing-page--1-.jpg" alt="Promotional Image">
+
+        <!-- Login Form Section -->
+        <h2>Login Or Signup</h2>
+        <form action="#" method="post">
+            <input type="email" placeholder="Enter your Email ID" required><br>
+            <input type="password" placeholder="Enter your Password" required><br>
+
+            <!-- Role Selection -->
+            <select required>
+                <option value="">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select><br>
+
+            <!-- Terms Section -->
+            <p class="terms">By continuing I agree to the <a href="https://www.myntra.com/termsofuse">Terms of Use & Privacy Policy</a></p>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Continue">
+
+            <!-- Help Section -->
+            <p class="help-text">Have trouble logging in? <a href="#">Get Help</a></p>
+
+            <!-- Register Section -->
+            <p class="register">New user? <a href="#">Register</a></p>
+        </form>
+    </div>
+
+</body>
+</html>
+<script>
+   import { navbar, searchFunction } from "../components/navbar.js";
+document.getElementById("navbar").innerHTML = navbar();
+
+document.querySelector("#form").addEventListener("submit", handleFormSubmit);
+
+searchFunction();
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent form default action (page reload)
+
+    const email = document.querySelector("#email").value.trim();  // Trim whitespace
+    const password = document.querySelector("#password").value.trim();
+
+    // Email validation
+    if (!email) {
+        alert("Please enter your email ID");
+        return false;
+    }
+
+    // Simple email validation pattern
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address");
+        return false;
+    }
+
+    // Password validation
+    if (!password) {
+        alert("Please enter your password");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password should be at least 6 characters long");
+        return false;
+    }
+
+    // If everything is valid, redirect to the new page (assuming login success)
+    window.location.href = "/index.html";
+    return true;
+}
+ 
+</script>
